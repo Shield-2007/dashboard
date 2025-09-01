@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель управления табло</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: #1e2a38;
+            color: #ecf0f1;
+            min-height: 100vh;
+            padding: 30px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: #2c3e50;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            color: #3498db;
+        }
+        
+        .admin-panels {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .panel {
+            background: #2c3e50;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .panel-department {
+            flex: 0 0 100%;
+        }
+        
+        .panel-title {
+            font-size: 28px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+            color: #3498db;
+        }
+        
+        .work-list {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 15px;
+            padding-right: 10px;
+        }
+        
+        .work-item {
+            background: #34495e;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .work-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .work-customer {
+            margin-bottom: 10px;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .btn-delete {
+            background: #e74c3c;
+        }
+        
+        .btn-delete:hover {
+            background: #c0392b;
+        }
+        
+        .btn-edit {
+            background: #f39c12;
+        }
+        
+        .btn-edit:hover {
+            background: #d35400;
+        }
+        
+        .actions {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .btn-save {
+            background: #2ecc71;
+            padding: 15px 50px;
+            font-size: 20px;
+        }
+        
+        .btn-save:hover {
+            background: #27ae60;
+        }
+        
+        .btn-back {
+            background: #9b59b6;
+            margin-left: 20px;
+        }
+        
+        .btn-back:hover {
+            background: #8e44ad;
+        }
+        
+        .logo-preview {
+            max-width: 200px;
+            max-height: 100px;
+            margin-top: 15px;
+            border-radius: 8px;
+            display: block;
+        }
+        
+        .work-id {
+            font-size: 18px;
+        }
+        
+        .work-date {
+            font-size: 14px;
+            color: #bdc3c7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Админ-панель управления табло</h1>
+            <p>Изменения сохраняются в локальном хранилище браузера</p>
+        </header>
+        
+        <div class="admin-panels">
+            <!-- Панель управления отделом -->
+            <div class="panel panel-department">
+                <h2 class="panel-title">Настройки отдела</h2>
+                <div class="form-group">
+                    <label for="dept-title">Название отдела</label>
+                    <input type="text" id="dept-title" placeholder="Введите название отдела">
+                </div>
+                
+                <div class="form-group">
+                    <label for="dept-subtitle1">Описание 1</label>
+                    <input type="text" id="dept-subtitle1" placeholder="Введите описание">
+                </div>
+                
+                <div class="form-group">
+                    <label for="dept-subtitle2">Описание 2</label>
+                    <input type="text" id="dept-subtitle2" placeholder="Введите описание">
+                </div>
+                
+                <div class="form-group">
+                    <label for="dept-status">Статус работ</label>
+                    <input type="text" id="dept-status" placeholder="Введите статус работ">
+                </div>
+                
+                <div class="form-group">
+                    <label for="logo-text">Текст под логотипом</label>
+                    <input type="text" id="logo-text" placeholder="Введите текст для логотипа">
+                </div>
+                
+                <div class="form-group">
+                    <label for="logo-url">URL логотипа</label>
+                    <input type="text" id="logo-url" placeholder="Введите URL изображения">
+                    <img id="logo-preview" class="logo-preview" src="" alt="Предпросмотр логотипа">
+                </div>
+            </div>
+            
+            <!-- Панель управления СП -->
+            <div class="panel">
+                <h2 class="panel-title">Работы СП</h2>
+                <div class="form-group">
+                    <label for="sp-id">ID работы</label>
+                    <input type="text" id="sp-id" placeholder="Введите ID работы">
+                </div>
+                
+                <div class="form-group">
+                    <label for="sp-customer">Заказчик работ</label>
+                    <input type="text" id="sp-customer" placeholder="Введите название организации">
+                </div>
+                
+                <div class="form-group">
+                    <label for="sp-date">Дата создания</label>
+                    <input type="text" id="sp-date" placeholder="ДД.ММ.ГГГГ">
+                </div>
+                
+                <button id="add-sp">Добавить работу СП</button>
+                
+                <div class="work-list" id="sp-list"></div>
+            </div>
+            
+            <!-- Панель управления ДОКСП -->
+            <div class="panel">
+                <h2 class="panel-title">Работы ДОКСП</h2>
+                <div class="form-group">
+                    <label for="doksp-id">ID работы</label>
+                    <input type="text" id="doksp-id" placeholder="Введите ID работы">
+                </div>
+                
+                <div class="form-group">
+                    <label for="doksp-customer">Заказчик работ</label>
+                    <input type="text" id="doksp-customer" placeholder="Введите название организации">
+                </div>
+                
+                <div class="form-group">
+                    <label for="doksp-date">Дата создания</label>
+                    <input type="text" id="doksp-date" placeholder="ДД.ММ.ГГГГ">
+                </div>
+                
+                <button id="add-doksp">Добавить работу ДОКСП</button>
+                
+                <div class="work-list" id="doksp-list"></div>
+            </div>
+            
+            <!-- Панель управления ДОКСИ -->
+            <div class="panel">
+                <h2 class="panel-title">Работы ДОКСИ</h2>
+                <div class="form-group">
+                    <label for="doksi-id">ID работы</label>
+                    <input type="text" id="doksi-id" placeholder="Введите ID работы">
+                </div>
+                
+                <div class="form-group">
+                    <label for="doksi-customer">Заказчик работ</label>
+                    <input type="text" id="doksi-customer" placeholder="Введите название организации">
+                </div>
+                
+                <div class="form-group">
+                    <label for="doksi-date">Дата создания</label>
+                    <input type="text" id="doksi-date" placeholder="ДД.ММ.ГГГГ">
+                </div>
+                
+                <button id="add-doksi">Добавить работу ДОКСИ</button>
+                
+                <div class="work-list" id="doksi-list"></div>
+            </div>
+        </div>
+        
+        <div class="actions">
+            <button id="save-all" class="btn-save">Сохранить все изменения</button>
+            <button id="back-to-board" class="btn-back">Вернуться на табло</button>
+        </div>
+    </div>
+
+    <script>
+        // Ключ для отслеживания изменений
+        const DATA_VERSION_KEY = 'board_data_version';
+        
+        // Загрузка данных при открытии админки
+        document.addEventListener('DOMContentLoaded', () => {
+            loadDepartmentData();
+            loadWorksData();
+            setupEventListeners();
+        });
+        
+        // Загрузка данных отдела
+        function loadDepartmentData() {
+            const deptData = JSON.parse(localStorage.getItem('departmentData')) || {
+                title: "ОТДЕЛ СПИСИ",
+                subtitle1: "Системы поддержки и сопровождения информации",
+                subtitle2: "Текущий статус работ",
+                logoText: "Логотип отдела",
+                statusText: "Работы выполняются в штатном режиме",
+                logoUrl: "logo.png"
+            };
+            
+            document.getElementById('dept-title').value = deptData.title;
+            document.getElementById('dept-subtitle1').value = deptData.subtitle1;
+            document.getElementById('dept-subtitle2').value = deptData.subtitle2;
+            document.getElementById('dept-status').value = deptData.statusText;
+            document.getElementById('logo-text').value = deptData.logoText;
+            document.getElementById('logo-url').value = deptData.logoUrl;
+            document.getElementById('logo-preview').src = deptData.logoUrl;
+        }
+        
+        // Загрузка данных работ
+        function loadWorksData() {
+            const worksData = JSON.parse(localStorage.getItem('worksData')) || {
+                sp: [
+                    { id: "SP-2023-101", customer: "ОАО 'РосТехСистемы'", date: "12.05.2023" },
+                    { id: "SP-2023-102", customer: "ЗАО 'ИнфоТех'", date: "15.05.2023" }
+                ],
+                doksp: [
+                    { id: "DSP-2023-201", customer: "ПАО 'ГлобалСвязь'", date: "10.05.2023" },
+                    { id: "DSP-2023-202", customer: "ООО 'КиберБезопасность'", date: "18.05.2023" }
+                ],
+                doksi: [
+                    { id: "DSI-2023-301", customer: "АО 'Научные Решения'", date: "20.05.2023" },
+                    { id: "DSI-2023-302", customer: "ООО 'Цифровые Технологии'", date: "22.05.2023" }
+                ]
+            };
+            
+            renderWorkList('sp', worksData.sp);
+            renderWorkList('doksp', worksData.doksp);
+            renderWorkList('doksi', worksData.doksi);
+        }
+        
+        // Отображение списка работ
+        function renderWorkList(type, works) {
+            const container = document.getElementById(`${type}-list`);
+            container.innerHTML = '';
+            
+            works.forEach((work, index) => {
+                const workItem = document.createElement('div');
+                workItem.className = 'work-item';
+                workItem.innerHTML = `
+                    <div class="work-header">
+                        <div class="work-id">
+                            <span class="status-indicator status-${type}"></span>
+                            ${work.id}
+                        </div>
+                        <div class="work-date">${work.date}</div>
+                    </div>
+                    <div class="work-customer">${work.customer}</div>
+                    <div class="btn-group">
+                        <button class="btn-edit" data-type="${type}" data-index="${index}">Изменить</button>
+                        <button class="btn-delete" data-type="${type}" data-index="${index}">Удалить</button>
+                    </div>
+                `;
+                container.appendChild(workItem);
+            });
+        }
+        
+        // Настройка обработчиков событий
+        function setupEventListeners() {
+            // Кнопки добавления работ
+            document.getElementById('add-sp').addEventListener('click', () => addWork('sp'));
+            document.getElementById('add-doksp').addEventListener('click', () => addWork('doksp'));
+            document.getElementById('add-doksi').addEventListener('click', () => addWork('doksi'));
+            
+            // Предпросмотр логотипа
+            document.getElementById('logo-url').addEventListener('input', function() {
+                document.getElementById('logo-preview').src = this.value;
+            });
+            
+            // Сохранение данных
+            document.getElementById('save-all').addEventListener('click', saveAllData);
+            
+            // Возврат на табло
+            document.getElementById('back-to-board').addEventListener('click', () => {
+                window.location.href = 'index.html';
+            });
+            
+            // Обработчики для динамических кнопок
+            document.addEventListener('click', function(e) {
+                // Удаление работы
+                if (e.target.classList.contains('btn-delete')) {
+                    const type = e.target.dataset.type;
+                    const index = parseInt(e.target.dataset.index);
+                    deleteWork(type, index);
+                }
+                
+                // Редактирование работы
+                if (e.target.classList.contains('btn-edit')) {
+                    const type = e.target.dataset.type;
+                    const index = parseInt(e.target.dataset.index);
+                    editWork(type, index);
+                }
+            });
+        }
+        
+        // Добавление новой работы
+        function addWork(type) {
+            const id = document.getElementById(`${type}-id`).value;
+            const customer = document.getElementById(`${type}-customer`).value;
+            const date = document.getElementById(`${type}-date`).value;
+            
+            if (!id || !customer || !date) {
+                alert('Пожалуйста, заполните все поля!');
+                return;
+            }
+            
+            const worksData = JSON.parse(localStorage.getItem('worksData')) || { sp: [], doksp: [], doksi: [] };
+            worksData[type].push({ id, customer, date });
+            localStorage.setItem('worksData', JSON.stringify(worksData));
+            
+            // Обновление списка
+            renderWorkList(type, worksData[type]);
+            
+            // Очистка полей
+            document.getElementById(`${type}-id`).value = '';
+            document.getElementById(`${type}-customer`).value = '';
+            document.getElementById(`${type}-date`).value = '';
+        }
+        
+        // Удаление работы
+        function deleteWork(type, index) {
+            const worksData = JSON.parse(localStorage.getItem('worksData'));
+            if (worksData && worksData[type] && worksData[type][index]) {
+                worksData[type].splice(index, 1);
+                localStorage.setItem('worksData', JSON.stringify(worksData));
+                renderWorkList(type, worksData[type]);
+            }
+        }
+        
+        // Редактирование работы
+        function editWork(type, index) {
+            const worksData = JSON.parse(localStorage.getItem('worksData'));
+            if (worksData && worksData[type] && worksData[type][index]) {
+                const work = worksData[type][index];
+                
+                // Заполнение формы для редактирования
+                document.getElementById(`${type}-id`).value = work.id;
+                document.getElementById(`${type}-customer`).value = work.customer;
+                document.getElementById(`${type}-date`).value = work.date;
+                
+                // Удаление старой записи
+                worksData[type].splice(index, 1);
+                localStorage.setItem('worksData', JSON.stringify(worksData));
+                
+                // Обновление списка
+                renderWorkList(type, worksData[type]);
+            }
+        }
+        
+        // Сохранение всех данных
+        function saveAllData() {
+            // Сохранение данных отдела
+            const deptData = {
+                title: document.getElementById('dept-title').value,
+                subtitle1: document.getElementById('dept-subtitle1').value,
+                subtitle2: document.getElementById('dept-subtitle2').value,
+                statusText: document.getElementById('dept-status').value,
+                logoText: document.getElementById('logo-text').value,
+                logoUrl: document.getElementById('logo-url').value
+            };
+            
+            localStorage.setItem('departmentData', JSON.stringify(deptData));
+            
+            // Увеличиваем версию данных для оповещения об изменении
+            const currentVersion = parseInt(localStorage.getItem(DATA_VERSION_KEY) || 0;
+            localStorage.setItem(DATA_VERSION_KEY, currentVersion + 1);
+            
+            alert('Все изменения сохранены!');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
