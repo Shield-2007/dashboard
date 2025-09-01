@@ -1,0 +1,127 @@
+/* Общие сбросы и базовые стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Общие стили для кнопок */
+button {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: #2980b9;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Общие стили для форм */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid #34495e;
+    background: #34495e;
+    color: #ecf0f1;
+    font-size: 16px;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Общие стили для карточек */
+.order-card, .work-item {
+    background: #f9f9f9;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.order-card:hover, .work-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.1);
+}
+
+/* Общие стили для индикаторов статуса */
+.status-indicator {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.status-sp { background-color: #f39c12; }
+.status-doksp { background-color: #2ecc71; }
+.status-doksi { background-color: #3498db; }
+
+/* Общие стили для заголовков */
+.order-id, .work-id {
+    font-weight: bold;
+    font-size: 26px;
+    margin-bottom: 8px;
+    color: #2c3e50;
+}
+
+.order-items, .work-customer {
+    font-size: 22px;
+    color: #34495e;
+    margin-bottom: 5px;
+}
+
+.order-time, .work-date {
+    font-size: 20px;
+    color: #7f8c8d;
+    text-align: right;
+    margin-top: 12px;
+    font-style: italic;
+}
+
+/* Общие стили для полосы прокрутки */
+.orders-container::-webkit-scrollbar,
+.work-list::-webkit-scrollbar {
+    width: 10px;
+}
+
+.orders-container::-webkit-scrollbar-track,
+.work-list::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+}
+
+.orders-container::-webkit-scrollbar-thumb,
+.work-list::-webkit-scrollbar-thumb {
+    background: rgba(52, 73, 94, 0.4);
+    border-radius: 8px;
+}
+
+.orders-container::-webkit-scrollbar-thumb:hover,
+.work-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(52, 73, 94, 0.6);
+}
