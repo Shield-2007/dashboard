@@ -6,8 +6,8 @@ let currentDataVersion = 0;
 function loadData() {
     // Загрузка данных отдела
     const deptData = JSON.parse(localStorage.getItem('departmentData')) || {
-        title: "Отдел СПиСИ",
-        subtitle1: "Специальная проверка технических средств",
+        title: "ОТДЕЛ СПИСИ",
+        subtitle1: "Системы поддержки и сопровождения информации",
         subtitle2: "Текущий статус работ",
         logoText: "Логотип отдела",
         statusText: "Работы выполняются в штатном режиме",
