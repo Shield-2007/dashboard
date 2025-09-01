@@ -6,8 +6,8 @@ let currentDataVersion = 0;
 function loadData() {
     // Загрузка данных отдела
     const deptData = JSON.parse(localStorage.getItem('departmentData')) || {
-        title: "ОТДЕЛ СПИСИ",
-        subtitle1: "Системы поддержки и сопровождения информации",
+        title: "Отдел СПиСИ",
+        subtitle1: "Специальная проверка технических средств",
         subtitle2: "Текущий статус работ",
         logoText: "Логотип отдела",
         statusText: "Работы выполняются в штатном режиме",
@@ -59,7 +59,7 @@ function renderBlock(blockId, works, statusClass) {
                 <span class="status-indicator ${statusClass}"></span>
                 Работа №${work.id}
             </div>
-            <div class="order-items">заказчик работ: ${work.customer}</div>
+            <div class="order-items">${work.customer}</div>
             <div class="order-time">Создана: ${work.date}</div>
         `;
         container.appendChild(workElement);
